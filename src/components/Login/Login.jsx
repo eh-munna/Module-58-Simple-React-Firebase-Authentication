@@ -1,13 +1,21 @@
 import React from 'react';
-import { GoogleAuthProvider, getAuth } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.init';
 
 const Login = () => {
   const auth = getAuth(app);
+  console.log(app);
   const provider = new GoogleAuthProvider();
 
   const googleSign = () => {
-    console.log('test');
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(`Error : `, error.message);
+      });
   };
   return (
     <div className="my-10">
@@ -15,7 +23,7 @@ const Login = () => {
         onClick={googleSign}
         className="rounded-lg bg-sky-400 p-3 font-medium text-slate-100"
       >
-        Try to logged in
+        Log in with Google
       </button>
     </div>
   );

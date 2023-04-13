@@ -33,3 +33,12 @@
   - Create an instance of the Google provider object
     - Make provider with : const provider = new GoogleAuthProvider();
       - Remember new must be used
+
+## 58-4 Open google login popup and Recap google popup sign in
+
+### signInWithPopup ()
+
+- Needs 2 parameters so we have to pass auth and provide as parameters
+- Activate sign in method from authentication for user
+- _ip address of local host is : 127.0.0.1_
+- if another error occurred related to domain then we have to authorize domains
