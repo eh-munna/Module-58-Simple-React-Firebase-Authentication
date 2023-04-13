@@ -42,3 +42,16 @@
 - Activate sign in method from authentication for user
 - _ip address of local host is : 127.0.0.1_
 - if another error occurred related to domain then we have to authorize domains
+
+## 58-5 Display logged in user info, Sign out, toggle sign in, sign out
+
+### Display logged in user info
+
+- Logged user’s information will be saved in an object
+- We would save the user info on a state
+- Then will set the logged user on the state and access the data
+- Display them on UI using ternary or logical and conditional rendering : if there is any data
+
+### toggle sign in, sign out
+
+- if there is a user logged in then sign out button and not then sign in button
