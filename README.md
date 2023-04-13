@@ -55,3 +55,14 @@
 ### toggle sign in, sign out
 
 - if there is a user logged in then sign out button and not then sign in button
+
+## 58-6 Enable Github sign in and Create github application
+
+### Enable Github sign in
+
+- Firstly, set up the sign-in method
+- Secondly, go to the GitHub developer settings and create an app
+  - set the app name, Homepage URL and call back URL
+    - Call back URL will be provided by firebase, so we will get it when we trigger to to set the sign-in method with GitHub
+- Then, will get the client id from GitHub and set this on sign-in method
+- Finally, we have to provide client secret id from GitHub, we can generate it in GitHub, and GitHub enable is done

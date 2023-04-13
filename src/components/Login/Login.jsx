@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
@@ -11,9 +12,10 @@ const Login = () => {
   const [user, setUser] = useState(null);
   const auth = getAuth(app);
   // console.log(auth);
-  const provider = new GoogleAuthProvider();
-  const googleSign = () => {
-    signInWithPopup(auth, provider)
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const googleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedUser = result.user;
         // console.log(user);
@@ -24,7 +26,16 @@ const Login = () => {
       });
   };
 
-  const googleSignOut = () => {
+  const gitHubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        setUser(loggedUser);
+      })
+      .catch((error) => console.log(`Error : `, error.message));
+  };
+
+  const userSignOut = () => {
     signOut(auth)
       .then((result) => {
         setUser(null);
@@ -33,23 +44,31 @@ const Login = () => {
         console.log(`something is wrong`);
       });
   };
-  console.log(user);
+  // console.log(user);
   return (
     <div className="my-10">
       {user ? (
         <button
-          onClick={googleSignOut}
+          onClick={userSignOut}
           className="rounded-lg bg-sky-400 p-3 font-medium text-slate-100"
         >
           Sign Out
         </button>
       ) : (
-        <button
-          onClick={googleSign}
-          className="rounded-lg bg-sky-400 p-3 font-medium text-slate-100"
-        >
-          Sign In
-        </button>
+        <div className="flex justify-center gap-2">
+          <button
+            onClick={googleSignIn}
+            className="rounded-lg bg-sky-400 p-3 font-medium text-slate-100"
+          >
+            Google Sign In
+          </button>
+          <button
+            onClick={gitHubSignIn}
+            className="rounded-lg bg-sky-400 p-3 font-medium text-slate-100"
+          >
+            GitHub Sign In
+          </button>
+        </div>
       )}
 
       {/* conditional rendering */}
